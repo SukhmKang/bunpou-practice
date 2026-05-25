@@ -1,0 +1,79 @@
+from __future__ import annotations
+
+import json
+import os
+from collections.abc import Iterator
+from typing import Any
+
+from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse
+from pydantic import BaseModel, Field
+
+from app.evaluate import evaluate, stream_evaluation_text
+
+app = FastAPI(title="Bunpou Practice API")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+@app.get("/health")
+def health() -> dict[str, str]:
+    return {"status": "ok"}
+
+
+@app.get("/api/grammar-points")
+def grammar_points() -> list[dict[str, object]]:
+    return []
+
+
+class EvaluationStreamRequest(BaseModel):
+    sentence: str = Field(min_length=1)
+    grammar_point: dict[str, Any]
+
+
+def _sse_event(event: str, data: object) -> str:
+    payload = json.dumps(data, ensure_ascii=False)
+    return f"event: {event}\ndata: {payload}\n\n"
+
+
+def _stream_evaluation_events(
+    sentence: str, grammar_point: dict[str, Any]
+) -> Iterator[str]:
+    try:
+        for chunk in stream_evaluation_text(sentence, grammar_point):
+            if chunk:
+                yield _sse_event("delta", {"text": chunk})
+
+        result = evaluate(sentence, grammar_point)
+        yield _sse_event("result", result.model_dump(exclude_none=True))
+        yield _sse_event("done", {})
+    except Exception as exc:
+        yield _sse_event("error", {"message": str(exc)})
+
+
+@app.post("/api/evaluate/stream")
+def evaluate_stream(request: EvaluationStreamRequest) -> StreamingResponse:
+    if "ANTHROPIC_API_KEY" not in os.environ:
+        raise HTTPException(
+            status_code=500,
+            detail="ANTHROPIC_API_KEY is not configured for the backend.",
+        )
+
+    if "pattern" not in request.grammar_point:
+        raise HTTPException(
+            status_code=422,
+            detail="grammar_point must include at least a pattern field.",
+        )
+
+    return StreamingResponse(
+        _stream_evaluation_events(request.sentence, request.grammar_point),
+        media_type="text/event-stream",
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
+    )

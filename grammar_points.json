@@ -1,0 +1,728 @@
+[
+  {
+    "lesson": 1,
+    "grammar_points": [
+      {
+        "pattern": "〜際に",
+        "meaning": "When (official, formal)"
+      },
+      {
+        "pattern": "〜に際して、〜にあたって",
+        "meaning": "when -ing"
+      },
+      {
+        "pattern": "〜たとたん",
+        "meaning": "when, the unexpected thing happens"
+      },
+      {
+        "pattern": "〜かと思うと、〜かと思ったら",
+        "meaning": "just when, (just when I thought…)"
+      },
+      {
+        "pattern": "〜か〜ないかのうちに",
+        "meaning": "at the same time, right after"
+      }
+    ]
+  },
+  {
+    "lesson": 2,
+    "grammar_points": [
+      {
+        "pattern": "〜最中だ",
+        "meaning": "in the middle of"
+      },
+      {
+        "pattern": "〜うちに (A)",
+        "meaning": "while (I still have time, I will do something)"
+      },
+      {
+        "pattern": "〜うちに (B)",
+        "meaning": "while (there will be a change)"
+      },
+      {
+        "pattern": "〜ばかりだ / 〜一方だ",
+        "meaning": "it continues to.. (negative meaning)"
+      },
+      {
+        "pattern": "〜ようとしている",
+        "meaning": "is about to.."
+      },
+      {
+        "pattern": "〜つつある",
+        "meaning": "the change is proceeding"
+      },
+      {
+        "pattern": "〜つつ",
+        "meaning": "while -ing"
+      }
+    ]
+  },
+  {
+    "lesson": 3,
+    "grammar_points": [
+      {
+        "pattern": "〜てはじめて",
+        "meaning": "only after, not until"
+      },
+      {
+        "pattern": "〜上（で）",
+        "meaning": "after, upon"
+      },
+      {
+        "pattern": "〜次第",
+        "meaning": "as soon as"
+      },
+      {
+        "pattern": "〜て以来、〜てこのかた",
+        "meaning": "since"
+      },
+      {
+        "pattern": "〜からでないと、〜てからでないと",
+        "meaning": "unless __ is not done, __ will not"
+      }
+    ]
+  },
+  {
+    "lesson": 4,
+    "grammar_points": [
+      {
+        "pattern": "〜をはじめ（として）",
+        "meaning": "for example, including"
+      },
+      {
+        "pattern": "〜からして",
+        "meaning": "(even) telling/judging from…"
+      },
+      {
+        "pattern": "〜にわたって",
+        "meaning": "throughout, over the period of, as much as"
+      },
+      {
+        "pattern": "〜を通じて、〜を通して (A)",
+        "meaning": "through (the time)"
+      },
+      {
+        "pattern": "〜を通じて、〜を通して (B)",
+        "meaning": "through, via, by (method)"
+      },
+      {
+        "pattern": "〜限り",
+        "meaning": "as far as"
+      },
+      {
+        "pattern": "〜だけ",
+        "meaning": "as much as.. (can)"
+      }
+    ]
+  },
+  {
+    "lesson": 5,
+    "grammar_points": [
+      {
+        "pattern": "〜に限り",
+        "meaning": "only for, only when.."
+      },
+      {
+        "pattern": "〜限り(は)",
+        "meaning": "as long as.."
+      },
+      {
+        "pattern": "〜限りでは",
+        "meaning": "as far as I can tell…"
+      },
+      {
+        "pattern": "〜に限って (A)",
+        "meaning": "Only when"
+      },
+      {
+        "pattern": "〜に限って (B)",
+        "meaning": "only when.. things go wrong"
+      },
+      {
+        "pattern": "〜に限って (C)",
+        "meaning": "will be the last one to do so! Will be the only one who would never do!"
+      }
+    ]
+  },
+  {
+    "lesson": 6,
+    "grammar_points": [
+      {
+        "pattern": "〜に限らず",
+        "meaning": "is not limited only to.., not only"
+      },
+      {
+        "pattern": "〜のみならず",
+        "meaning": "not only but also"
+      },
+      {
+        "pattern": "〜ばかりか",
+        "meaning": "not only but surprisingly.."
+      },
+      {
+        "pattern": "〜はもとより",
+        "meaning": "let alone, of course"
+      },
+      {
+        "pattern": "〜上に",
+        "meaning": "on top of that"
+      }
+    ]
+  },
+  {
+    "lesson": 7,
+    "grammar_points": [
+      {
+        "pattern": "〜に関して",
+        "meaning": "about, regarding"
+      },
+      {
+        "pattern": "〜をめぐって",
+        "meaning": "about, regarding (the subject is plural)"
+      },
+      {
+        "pattern": "〜にかけては",
+        "meaning": "when it comes to…, s/he is the best at.."
+      },
+      {
+        "pattern": "〜に対して (A)",
+        "meaning": "toward, about"
+      },
+      {
+        "pattern": "〜に対して (B)",
+        "meaning": "compared to"
+      },
+      {
+        "pattern": "〜にこたえて",
+        "meaning": "in response to.."
+      }
+    ]
+  },
+  {
+    "lesson": 8,
+    "grammar_points": [
+      {
+        "pattern": "〜をもとにして",
+        "meaning": "based on"
+      },
+      {
+        "pattern": "〜に基づいて",
+        "meaning": "based on, based upon"
+      },
+      {
+        "pattern": "〜に沿って",
+        "meaning": "along with, following"
+      },
+      {
+        "pattern": "〜のもとで、〜のもとに",
+        "meaning": "under, for, at the side of"
+      },
+      {
+        "pattern": "〜向けだ",
+        "meaning": "aimed at, intended for, designed for"
+      }
+    ]
+  },
+  {
+    "lesson": 9,
+    "grammar_points": [
+      {
+        "pattern": "〜につれて、〜にしたがって",
+        "meaning": "as"
+      },
+      {
+        "pattern": "〜に伴って、〜とともに",
+        "meaning": "as, accompanying"
+      },
+      {
+        "pattern": "〜次第だ",
+        "meaning": "depending on"
+      },
+      {
+        "pattern": "〜に応じて",
+        "meaning": "in accordance with"
+      },
+      {
+        "pattern": "〜につけて",
+        "meaning": "whenever"
+      }
+    ]
+  },
+  {
+    "lesson": 10,
+    "grammar_points": [
+      {
+        "pattern": "〜やら〜やら",
+        "meaning": "such things and so on.."
+      },
+      {
+        "pattern": "〜というか〜というか",
+        "meaning": "I'm not sure if it's A or B.."
+      },
+      {
+        "pattern": "〜にしても〜にしても / 〜にしろ〜にしろ / 〜にせよ〜にせよ",
+        "meaning": "regardless of whether"
+      },
+      {
+        "pattern": "〜といった",
+        "meaning": "such as.."
+      }
+    ]
+  },
+  {
+    "lesson": 11,
+    "grammar_points": [
+      {
+        "pattern": "〜を問わず",
+        "meaning": "no restriction of, no inquiry of, no questions asked about.."
+      },
+      {
+        "pattern": "〜にかかわりなく / 〜にかかわらず",
+        "meaning": "regardless of.."
+      },
+      {
+        "pattern": "〜もかまわず",
+        "meaning": "without minding about…"
+      },
+      {
+        "pattern": "〜はともかく（として）",
+        "meaning": "putting aside the .. for a moment"
+      },
+      {
+        "pattern": "〜はさておき",
+        "meaning": "aside from…, apart from…, setting aside the earlier mentioned matter…"
+      }
+    ]
+  },
+  {
+    "lesson": 12,
+    "grammar_points": [
+      {
+        "pattern": "〜わけがない",
+        "meaning": "there is no way that.."
+      },
+      {
+        "pattern": "〜どころではない / 〜どころか",
+        "meaning": "rather than, far from, on the contrary"
+      },
+      {
+        "pattern": "〜ものか",
+        "meaning": "no way that.."
+      },
+      {
+        "pattern": "〜わけではない / 〜というわけではない",
+        "meaning": "it's not that.., it is not always.."
+      },
+      {
+        "pattern": "〜というものではない / 〜というものでもない",
+        "meaning": "it's not that.., there is no guarantee that.. even if the conditions are met"
+      }
+    ]
+  },
+  {
+    "lesson": 13,
+    "grammar_points": [
+      {
+        "pattern": "〜とは",
+        "meaning": "= it means.., that is to say…"
+      },
+      {
+        "pattern": "〜といえば (A)",
+        "meaning": "talking about…, speaking of… (and leads to a different/related topic)"
+      },
+      {
+        "pattern": "〜といえば (B)",
+        "meaning": "I am certain that but.., you can say.. but.., I agree that.. but.."
+      },
+      {
+        "pattern": "〜というと / 〜といえば / 〜といったら",
+        "meaning": "Speaking of.. it comes to my mind…."
+      },
+      {
+        "pattern": "〜（のこと）となると",
+        "meaning": "when it comes to.. (it's a different attitude than usual!)"
+      },
+      {
+        "pattern": "〜といったら",
+        "meaning": "when it comes to.. (it's not normal! It's a surprise!)"
+      }
+    ]
+  },
+  {
+    "lesson": 14,
+    "grammar_points": [
+      {
+        "pattern": "〜にもかかわらず",
+        "meaning": "despite, in spite of"
+      },
+      {
+        "pattern": "〜ものの / 〜とはいうものの",
+        "meaning": "but.., although.., even though.."
+      },
+      {
+        "pattern": "〜ながら(も)",
+        "meaning": "although, despite"
+      },
+      {
+        "pattern": "〜つつ(も)",
+        "meaning": "while, even though, despite"
+      },
+      {
+        "pattern": "〜といっても",
+        "meaning": "although I say…, although one might say…"
+      },
+      {
+        "pattern": "〜からといって",
+        "meaning": "just because.."
+      }
+    ]
+  },
+  {
+    "lesson": 15,
+    "grammar_points": [
+      {
+        "pattern": "〜としたら / 〜とすれば / 〜とすると / 〜となったら / 〜となれば / 〜となると",
+        "meaning": "if it were the case.., let's suppose it were.."
+      },
+      {
+        "pattern": "〜ものなら",
+        "meaning": "if one does something, (one'd want to..)"
+      },
+      {
+        "pattern": "〜(よ)うものなら",
+        "meaning": "if one or things happens to do, (some trouble occurs!)"
+      },
+      {
+        "pattern": "〜ないことには",
+        "meaning": "Unless one does something, (one won't..)"
+      },
+      {
+        "pattern": "〜を抜きにしては",
+        "meaning": "Without something (important), (it won't…). It'd be difficult to do something without…"
+      },
+      {
+        "pattern": "〜としても / 〜にしても / 〜にしろ / 〜にせよ",
+        "meaning": "even though…, even if…, whatever.."
+      }
+    ]
+  },
+  {
+    "lesson": 16,
+    "grammar_points": [
+      {
+        "pattern": "〜によって",
+        "meaning": "by (to express the result by a cause) / (to express the way/method) *N3"
+      },
+      {
+        "pattern": "〜ものだから / 〜もので / 〜もの",
+        "meaning": "because (casual, personal excuse)"
+      },
+      {
+        "pattern": "〜おかげだ",
+        "meaning": "thanks to"
+      },
+      {
+        "pattern": "〜せいだ",
+        "meaning": "because of"
+      },
+      {
+        "pattern": "〜あまり / あまりの〜に",
+        "meaning": "so.. that.."
+      },
+      {
+        "pattern": "〜につき",
+        "meaning": "due to, because of (a notice for public)"
+      }
+    ]
+  },
+  {
+    "lesson": 17,
+    "grammar_points": [
+      {
+        "pattern": "〜ことだし",
+        "meaning": "because, since"
+      },
+      {
+        "pattern": "〜のことだから",
+        "meaning": "since it's that specific person.."
+      },
+      {
+        "pattern": "〜だけに",
+        "meaning": "being that case, one would expect…; it is so much __ that __"
+      },
+      {
+        "pattern": "〜ばかりに",
+        "meaning": "(simply) because.."
+      },
+      {
+        "pattern": "〜からには / 〜以上は / 〜上は",
+        "meaning": "Since.. (it's very common/natural to do…)"
+      }
+    ]
+  },
+  {
+    "lesson": 18,
+    "grammar_points": [
+      {
+        "pattern": "〜がたい",
+        "meaning": "It's difficult to.. (not about one's own ability)"
+      },
+      {
+        "pattern": "〜わけにはいかない / 〜わけにもいかない",
+        "meaning": "cannot, have no choice but.. (due to circumstances such as violation of social common sense or psychological resistance)"
+      },
+      {
+        "pattern": "〜かねる",
+        "meaning": "cannot, difficult to do (in this situation, condition) *used to decline politely"
+      },
+      {
+        "pattern": "〜ようがない",
+        "meaning": "there is no way, it's impossible to.."
+      },
+      {
+        "pattern": "〜どころではない",
+        "meaning": "cannot (it's not the time/occasion for..)"
+      },
+      {
+        "pattern": "〜得る（うる） / 〜得ない（えない）",
+        "meaning": "can, cannot (there is a possibility)"
+      }
+    ]
+  },
+  {
+    "lesson": 19,
+    "grammar_points": [
+      {
+        "pattern": "〜わりに（は）",
+        "meaning": "for, considering it's.., despite, unexpectedly (used with general word!)"
+      },
+      {
+        "pattern": "〜にしては",
+        "meaning": "for, considering it's.., despite, unexpectedly (used with a specific word!)"
+      },
+      {
+        "pattern": "〜だけ（のことは）ある",
+        "meaning": "it is no surprise, no wonder, it's as expected"
+      },
+      {
+        "pattern": "〜として",
+        "meaning": "as in the role of"
+      },
+      {
+        "pattern": "〜にとって",
+        "meaning": "For…. (some evaluation/idea follows!)"
+      },
+      {
+        "pattern": "〜にしたら / 〜にすれば / 〜にしてみれば / 〜にしても",
+        "meaning": "For somebody else, I can say… (it's used to guess somebody else's feelings!) From the perspective of.."
+      }
+    ]
+  },
+  {
+    "lesson": 20,
+    "grammar_points": [
+      {
+        "pattern": "〜たところ",
+        "meaning": "when.. It's used to describe triggering action of a discovery (result)"
+      },
+      {
+        "pattern": "〜きり",
+        "meaning": "Since…, the situation hasn't changed (as you'd expect); to continue in a certain state"
+      },
+      {
+        "pattern": "〜あげく",
+        "meaning": "After.., (the poor result came out). In the end, to end up"
+      },
+      {
+        "pattern": "〜末に（すえに）",
+        "meaning": "After…, as a conclusion of.."
+      },
+      {
+        "pattern": "〜ところだった",
+        "meaning": "was just about to do something…; something almost happened"
+      },
+      {
+        "pattern": "〜ずじまいだ",
+        "meaning": "never, did not have the chance to"
+      }
+    ]
+  },
+  {
+    "lesson": 21,
+    "grammar_points": [
+      {
+        "pattern": "〜ぐらい / 〜くらい",
+        "meaning": "At least, something like (it's used to disregard/make light of thing)"
+      },
+      {
+        "pattern": "〜など / 〜なんか / 〜なんて",
+        "meaning": "Something light/valueless/unimportant as…, something like.."
+      },
+      {
+        "pattern": "〜まで / 〜までして / 〜てまで",
+        "meaning": "Even doing something so extreme as.."
+      },
+      {
+        "pattern": "〜として〜ない",
+        "meaning": "there is not even one"
+      },
+      {
+        "pattern": "〜さえ (A)",
+        "meaning": "= emphasis of も, すら; even (used with an extreme/unexpected example)"
+      },
+      {
+        "pattern": "〜さえ (B)",
+        "meaning": "= ば、それだけで; if only (this one condition is met, there won't be any problem)"
+      },
+      {
+        "pattern": "〜てでも",
+        "meaning": "Even if I have to do this unusual thing, I will.. By all means"
+      }
+    ]
+  },
+  {
+    "lesson": 22,
+    "grammar_points": [
+      {
+        "pattern": "〜とみえる",
+        "meaning": "It seems that.. (by seeing somebody else)"
+      },
+      {
+        "pattern": "〜かねない",
+        "meaning": "It might (bad result)"
+      },
+      {
+        "pattern": "〜おそれがある",
+        "meaning": "There is a fear that.., it is feared that.., to be in danger of.."
+      },
+      {
+        "pattern": "〜まい / 〜ではあるまいか",
+        "meaning": "I believe not / guess not / wonder not; I don't believe that.. (negative assumption!) 「ではあるまいか」is used as indirect way to say the speaker's opinion. *Be careful, in chapter 24th, the meaning is 'strong determination'"
+      },
+      {
+        "pattern": "〜に違いない / 〜に相違ない",
+        "meaning": "I'm sure that.., there is no doubt about.."
+      },
+      {
+        "pattern": "〜にきまっている",
+        "meaning": "Surely.., must be.."
+      }
+    ]
+  },
+  {
+    "lesson": 23,
+    "grammar_points": [
+      {
+        "pattern": "〜ものだ",
+        "meaning": "it's a natural to, it's the true nature/tendency of a thing to.. (expressing general idea)"
+      },
+      {
+        "pattern": "〜というものだ",
+        "meaning": "It's a common sense to, it's a natural manner to (evaluating the situation)"
+      },
+      {
+        "pattern": "〜にすぎない",
+        "meaning": "no more than, just, merely"
+      },
+      {
+        "pattern": "〜にほかならない",
+        "meaning": "none other than, nothing but"
+      },
+      {
+        "pattern": "〜に越したことはない",
+        "meaning": "it's safest to.., it's better…"
+      },
+      {
+        "pattern": "〜しかない / 〜よりほかない",
+        "meaning": "no other choice but.."
+      },
+      {
+        "pattern": "〜べきだ / 〜べきではない",
+        "meaning": "must, should / must not, should not"
+      }
+    ]
+  },
+  {
+    "lesson": 24,
+    "grammar_points": [
+      {
+        "pattern": "〜（よ）うではないか",
+        "meaning": "Let's, why don't we.."
+      },
+      {
+        "pattern": "〜ことだ",
+        "meaning": "You'd better / You'd better not.. (giving an advice)"
+      },
+      {
+        "pattern": "〜ものだ / 〜ものではない",
+        "meaning": "You'd better / You'd better not.. (based on common sense)"
+      },
+      {
+        "pattern": "〜ことはない",
+        "meaning": "No need to.. (expresses the speaker's judgement)"
+      },
+      {
+        "pattern": "〜まい / 〜（よ）うか〜まいか",
+        "meaning": "= will not / = whether or not (no intention)"
+      },
+      {
+        "pattern": "〜ものか",
+        "meaning": "will not.. (absolutely no intention)"
+      }
+    ]
+  },
+  {
+    "lesson": 25,
+    "grammar_points": [
+      {
+        "pattern": "〜てしかたがない / 〜てしょうがない / 〜てたまらない",
+        "meaning": "Very, extremely, can't be helped (to show feelings)"
+      },
+      {
+        "pattern": "〜てならない",
+        "meaning": "cannot stop feeling…; very, extremely (to show spontaneous feelings)"
+      },
+      {
+        "pattern": "〜ないではいられない / 〜ずにはいられない",
+        "meaning": "(despite my will) can't help but .."
+      },
+      {
+        "pattern": "〜ないわけに（は）いかない",
+        "meaning": "(due to social common sense and social obligations) cannot afford not to, have no choice but to.."
+      },
+      {
+        "pattern": "〜ざるを得ない",
+        "meaning": "(There is no other options) have no choice but to.."
+      }
+    ]
+  },
+  {
+    "lesson": 26,
+    "grammar_points": [
+      {
+        "pattern": "〜たいものだ / 〜てほしいものだ",
+        "meaning": "to want to *not for a specific request"
+      },
+      {
+        "pattern": "〜ものだ",
+        "meaning": "A. I used to.. (nostalgic feeling) / B. I strongly feel.. (ex: How quick time flies!)"
+      },
+      {
+        "pattern": "〜ないもの（だろう）か",
+        "meaning": "(it's difficult to come true but) can't we do anything about it..?"
+      },
+      {
+        "pattern": "〜ものがある",
+        "meaning": "It feels like.., I strongly feel.., there is a feeling of.. *used in comments, impressions"
+      },
+      {
+        "pattern": "〜ことだ",
+        "meaning": "It really is.. (to show surprise, impression, and irony!)"
+      },
+      {
+        "pattern": "〜ことだろう / 〜ことか",
+        "meaning": "How…. (ex: How many years it took.., how many times.., how often…)"
+      }
+    ]
+  }
+]
