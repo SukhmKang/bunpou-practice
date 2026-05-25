@@ -135,7 +135,7 @@ function App() {
 
   return (
     <main className="min-h-screen bg-[radial-gradient(circle_at_top_left,#dbeafe_0,#f4f7fb_32%,#eef7f1_70%,#f8fafc_100%)] text-slate-900">
-      <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col px-4 py-5 sm:px-6 lg:px-8">
+      <div className="flex min-h-screen w-full flex-col px-4 py-5 sm:px-6 lg:px-8">
         <section className="grid flex-1 gap-5 lg:grid-cols-[360px_minmax(0,1fr)]">
           <aside className="rounded-lg border border-slate-200 bg-white/90 p-4 shadow-sm">
             <label className="text-xs font-semibold uppercase text-slate-500">
