@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import json
 import os
-from collections.abc import Iterator
 from pathlib import Path
 from typing import Optional
 
@@ -58,35 +57,6 @@ Rules:
 - Avoid both sycophancy ("great sentence! one tiny thing...") and performative strictness ("technically you could also say...")."""
 
 
-def build_stream_prompt(sentence: str, gp: dict) -> str:
-    examples = gp.get("example_sentences", [])
-    numbered = "\n".join(f"{i + 1}. {s}" for i, s in enumerate(examples))
-    warning_line = f"WARNING: {gp['warning']}\n" if "warning" in gp else ""
-    meaning = gp.get("jp_meaning", gp.get("eng_meaning", ""))
-
-    return f"""\
-GRAMMAR POINT: {gp['pattern']}
-MEANING: {meaning}
-{warning_line}EXAMPLE SENTENCES FROM TEXTBOOK:
-{numbered}
-
-STUDENT'S SENTENCE:
-{sentence}
-
-Give the student a concise evaluation in Japanese. Do not output JSON.
-Include:
-- whether the sentence is natural, unnatural but grammatically correct, grammatically wrong, or not using the grammar point
-- the main reason
-- a corrected or more native version if useful
-- one short note about nuance if useful
-
-Rules:
-- Be direct and honest.
-- If the WARNING rule is violated, explicitly call it out.
-- Don't compliment the student's sentence.
-- Avoid nitpicking when the sentence is already natural."""
-
-
 def evaluate(sentence: str, grammar_point: dict) -> Evaluation:
     client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
     response = client.messages.parse(
@@ -98,20 +68,6 @@ def evaluate(sentence: str, grammar_point: dict) -> Evaluation:
         temperature=0.2,
     )
     return response.parsed_output
-
-
-def stream_evaluation_text(sentence: str, grammar_point: dict) -> Iterator[str]:
-    client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
-    with client.messages.stream(
-        model=DEFAULT_MODEL,
-        max_tokens=1024,
-        system=SYSTEM_PROMPT,
-        messages=[
-            {"role": "user", "content": build_stream_prompt(sentence, grammar_point)}
-        ],
-        temperature=0.2,
-    ) as stream:
-        yield from stream.text_stream
 
 
 if __name__ == "__main__":

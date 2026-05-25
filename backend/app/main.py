@@ -10,7 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 
-from app.evaluate import evaluate, stream_evaluation_text
+from app.evaluate import evaluate
 
 app = FastAPI(title="Bunpou Practice API")
 
@@ -65,10 +65,7 @@ def _stream_evaluation_events(
     sentence: str, grammar_point: dict[str, Any]
 ) -> Iterator[str]:
     try:
-        for chunk in stream_evaluation_text(sentence, grammar_point):
-            if chunk:
-                yield _sse_event("delta", {"text": chunk})
-
+        yield _sse_event("status", {"text": "Evaluating sentence..."})
         result = evaluate(sentence, grammar_point)
         yield _sse_event("result", result.model_dump(exclude_none=True))
         yield _sse_event("done", {})

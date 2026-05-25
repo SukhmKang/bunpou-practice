@@ -1,5 +1,4 @@
 import { useMemo, useState } from "react";
-import ReactMarkdown from "react-markdown";
 import grammarLessons from "./data/grammar_points_merged.json";
 import "./App.css";
 
@@ -39,7 +38,7 @@ function App() {
   const [lessonIndex, setLessonIndex] = useState(0);
   const [pointIndex, setPointIndex] = useState(0);
   const [sentence, setSentence] = useState("");
-  const [streamedFeedback, setStreamedFeedback] = useState("");
+  const [statusMessage, setStatusMessage] = useState("");
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");
   const [isEvaluating, setIsEvaluating] = useState(false);
@@ -72,7 +71,7 @@ function App() {
   }
 
   function resetEvaluation() {
-    setStreamedFeedback("");
+    setStatusMessage("");
     setResult(null);
     setError("");
   }
@@ -82,7 +81,7 @@ function App() {
     if (!trimmedSentence || !grammarPoint || isEvaluating) return;
 
     setIsEvaluating(true);
-    setStreamedFeedback("");
+    setStatusMessage("");
     setResult(null);
     setError("");
 
@@ -113,8 +112,8 @@ function App() {
         buffer = parsed.remainder;
 
         for (const item of parsed.events) {
-          if (item.event === "delta") {
-            setStreamedFeedback((current) => current + (item.data?.text ?? ""));
+          if (item.event === "status") {
+            setStatusMessage(item.data?.text ?? "");
           }
 
           if (item.event === "result") {
@@ -272,19 +271,9 @@ function App() {
                 </div>
               )}
 
-              {(isEvaluating || streamedFeedback) && (
-                <div className="mt-5 rounded-lg border border-blue-100 bg-blue-50/60 p-4">
-                  <div className="mb-3 flex items-center justify-between">
-                    <p className="text-xs font-semibold uppercase text-blue-700">
-                      Live feedback
-                    </p>
-                    {isEvaluating && (
-                      <span className="rounded-full bg-blue-100 px-2 py-1 text-xs font-semibold text-blue-800">
-                        Streaming
-                      </span>
-                    )}
-                  </div>
-                  <MarkdownFeedback>{streamedFeedback}</MarkdownFeedback>
+              {isEvaluating && (
+                <div className="mt-5 rounded-lg border border-blue-100 bg-blue-50/60 p-4 text-sm font-medium text-blue-900">
+                  {statusMessage || "Evaluating sentence..."}
                 </div>
               )}
             </div>
@@ -310,58 +299,6 @@ function ToggleButton({ active, label, onClick }) {
     >
       {label}
     </button>
-  );
-}
-
-function MarkdownFeedback({ children }) {
-  return (
-    <div className="min-h-24 text-sm leading-7 text-slate-800">
-      <ReactMarkdown
-        components={{
-          p: ({ children: paragraphChildren }) => (
-            <p className="mb-3 last:mb-0">{paragraphChildren}</p>
-          ),
-          strong: ({ children: strongChildren }) => (
-            <strong className="font-semibold text-slate-950">
-              {strongChildren}
-            </strong>
-          ),
-          ul: ({ children: listChildren }) => (
-            <ul className="mb-3 ml-5 list-disc space-y-1 last:mb-0">
-              {listChildren}
-            </ul>
-          ),
-          ol: ({ children: listChildren }) => (
-            <ol className="mb-3 ml-5 list-decimal space-y-1 last:mb-0">
-              {listChildren}
-            </ol>
-          ),
-          li: ({ children: itemChildren }) => <li>{itemChildren}</li>,
-          h1: ({ children: headingChildren }) => (
-            <h3 className="mb-2 text-base font-semibold text-slate-950">
-              {headingChildren}
-            </h3>
-          ),
-          h2: ({ children: headingChildren }) => (
-            <h3 className="mb-2 text-base font-semibold text-slate-950">
-              {headingChildren}
-            </h3>
-          ),
-          h3: ({ children: headingChildren }) => (
-            <h3 className="mb-2 text-sm font-semibold text-slate-950">
-              {headingChildren}
-            </h3>
-          ),
-          code: ({ children: codeChildren }) => (
-            <code className="rounded bg-white px-1.5 py-0.5 text-[0.9em] text-blue-800">
-              {codeChildren}
-            </code>
-          ),
-        }}
-      >
-        {children}
-      </ReactMarkdown>
-    </div>
   );
 }
 
