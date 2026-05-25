@@ -14,9 +14,27 @@ from app.evaluate import evaluate, stream_evaluation_text
 
 app = FastAPI(title="Bunpou Practice API")
 
+DEFAULT_CORS_ORIGINS = [
+    "http://localhost:5173",
+    "https://bunpou-practice.vercel.app",
+]
+
+
+def get_cors_origins() -> list[str]:
+    configured_origins = os.getenv("BACKEND_CORS_ORIGINS")
+    if not configured_origins:
+        return DEFAULT_CORS_ORIGINS
+
+    return [
+        origin.strip()
+        for origin in configured_origins.split(",")
+        if origin.strip()
+    ]
+
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=get_cors_origins(),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
