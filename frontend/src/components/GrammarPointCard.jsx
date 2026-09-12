@@ -1,49 +1,36 @@
-import { motion, AnimatePresence } from "motion/react";
-
-function IconButton({ onClick, disabled, label }) {
+function IconButton({ onClick, disabled, label, children }) {
   return (
     <button
+      type="button"
       onClick={onClick}
       disabled={disabled}
-      className="flex h-8 w-8 items-center justify-center rounded-sm border font-mono text-sm transition hover:bg-[rgba(21,17,12,0.04)] disabled:cursor-not-allowed disabled:opacity-30"
-      style={{
-        borderColor: "rgba(21, 17, 12, 0.18)",
-        color: "var(--sumi)",
-      }}
+      aria-label={label}
+      className="flex h-11 w-11 items-center justify-center rounded-lg border border-slate-300 bg-white text-lg text-slate-700 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
     >
-      {label}
+      {children}
     </button>
   );
 }
 
-function PillToggle({ active, onClick, label, sub }) {
+function ToggleButton({ active, onClick, children }) {
   return (
     <button
-      onClick={onClick}
       type="button"
-      className="group flex items-center gap-2 rounded-full border px-3 py-1 transition"
-      style={{
-        borderColor: active ? "var(--sumi)" : "rgba(21, 17, 12, 0.18)",
-        background: active ? "var(--sumi)" : "transparent",
-        color: active ? "var(--washi-light)" : "var(--sumi)",
-      }}
+      aria-pressed={active}
+      onClick={onClick}
+      className={`rounded-lg border px-3 py-2 text-sm font-medium ${
+        active
+          ? "border-blue-600 bg-blue-50 text-blue-700"
+          : "border-slate-300 bg-white text-slate-700 hover:bg-slate-50"
+      }`}
     >
-      <span className="font-jp text-[13px]">{label}</span>
-      <span
-        className="font-mono text-[9px] tracking-[0.2em] uppercase"
-        style={{
-          color: active ? "rgba(245, 239, 224, 0.6)" : "var(--ink-mute)",
-        }}
-      >
-        {sub}
-      </span>
+      {children}
     </button>
   );
 }
 
 export function GrammarPointCard({
   grammarPoint,
-  lessonIndex,
   pointIndex,
   totalPoints,
   showDetails,
@@ -53,146 +40,65 @@ export function GrammarPointCard({
   onToggleExamples,
 }) {
   return (
-    <motion.div
-      key={`${lessonIndex}-${pointIndex}`}
-      initial={{ opacity: 0, y: 12, filter: "blur(6px)" }}
-      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className="paper relative flex flex-col gap-5 rounded-sm p-6"
-    >
-      {/* Vertical label */}
-      <div
-        className="tategaki absolute -left-3 top-6 font-jp text-[10px] tracking-[0.4em] uppercase"
-        style={{ color: "var(--shu)" }}
-      >
-        Pattern · 文型
-      </div>
-
-      {/* Counter + nav */}
-      <div className="ml-4 flex items-center justify-between">
-        <p className="font-mono text-xs" style={{ color: "var(--ink-mute)" }}>
-          <span style={{ color: "var(--sumi)" }}>
-            {String(pointIndex + 1).padStart(2, "0")}
-          </span>
-          <span className="mx-1.5">/</span>
-          {String(totalPoints).padStart(2, "0")}
+    <section className="rounded-xl border border-slate-200 bg-white p-5" aria-labelledby="grammar-pattern">
+      <div className="flex items-center justify-between gap-4">
+        <p className="text-sm text-slate-600">
+          Grammar point {pointIndex + 1} of {totalPoints}
         </p>
-        <div className="flex items-center gap-1">
+        <div className="flex gap-2">
           <IconButton
             onClick={() => onChangePoint(pointIndex - 1)}
             disabled={totalPoints < 2}
-            label="←"
-          />
+            label="Previous grammar point"
+          >
+            ←
+          </IconButton>
           <IconButton
             onClick={() => onChangePoint(pointIndex + 1)}
             disabled={totalPoints < 2}
-            label="→"
-          />
+            label="Next grammar point"
+          >
+            →
+          </IconButton>
         </div>
       </div>
 
-      {/* Pattern */}
-      <div className="ml-4">
-        <h2
-          className="font-jp text-[2.5rem] font-medium leading-tight"
-          style={{ color: "var(--sumi)" }}
-        >
-          {grammarPoint.pattern}
-        </h2>
+      <h2 id="grammar-pattern" className="mt-5 break-words text-3xl font-semibold leading-tight text-slate-950">
+        {grammarPoint.pattern}
+      </h2>
+
+      <div className="mt-5 flex flex-wrap gap-2">
+        <ToggleButton active={showDetails} onClick={onToggleDetails}>
+          Meaning
+        </ToggleButton>
+        <ToggleButton active={showExamples} onClick={onToggleExamples}>
+          Examples
+        </ToggleButton>
       </div>
 
-      {/* Toggles */}
-      <div className="ml-4 flex gap-2">
-        <PillToggle
-          active={showDetails}
-          onClick={onToggleDetails}
-          label="意味"
-          sub="Meaning"
-        />
-        <PillToggle
-          active={showExamples}
-          onClick={onToggleExamples}
-          label="例文"
-          sub="Examples"
-        />
-      </div>
+      {showDetails && (grammarPoint.jp_meaning || grammarPoint.eng_meaning) ? (
+        <div className="mt-5 border-t border-slate-200 pt-5">
+          <p className="text-base leading-7 text-slate-800">
+            {grammarPoint.jp_meaning || grammarPoint.eng_meaning}
+          </p>
+          {grammarPoint.warning ? (
+            <div className="mt-4 rounded-lg bg-amber-50 p-3 text-sm leading-6 text-amber-950">
+              <strong className="font-semibold">Note:</strong> {grammarPoint.warning}
+            </div>
+          ) : null}
+        </div>
+      ) : null}
 
-      <AnimatePresence initial={false}>
-        {showDetails && (grammarPoint.jp_meaning || grammarPoint.eng_meaning) && (
-          <motion.div
-            key="details"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="ml-4 overflow-hidden"
-          >
-            <p
-              className="font-jp pt-1 text-[15px] leading-[1.9]"
-              style={{ color: "var(--sumi-soft)" }}
-            >
-              {grammarPoint.jp_meaning || grammarPoint.eng_meaning}
-            </p>
-            {grammarPoint.warning && (
-              <div
-                className="mt-4 border-l-2 pl-3 font-jp text-[13px] leading-[1.9]"
-                style={{
-                  borderColor: "var(--shu)",
-                  color: "var(--sumi-soft)",
-                }}
-              >
-                <span
-                  className="font-mono mr-2 text-[10px] tracking-[0.2em] uppercase"
-                  style={{ color: "var(--shu)" }}
-                >
-                  注意 · note
-                </span>
-                {grammarPoint.warning}
-              </div>
-            )}
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <AnimatePresence initial={false}>
-        {showExamples && grammarPoint.example_sentences?.length > 0 && (
-          <motion.div
-            key="examples"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="ml-4 overflow-hidden"
-          >
-            <p
-              className="font-mono mb-2 text-[10px] tracking-[0.3em] uppercase"
-              style={{ color: "var(--ink-mute)" }}
-            >
-              Textbook · 教科書例
-            </p>
-            <ul className="flex flex-col gap-2.5">
-              {grammarPoint.example_sentences.map((example, i) => (
-                <motion.li
-                  key={example}
-                  initial={{ opacity: 0, x: -8 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                  className="font-jp flex gap-3 text-[14px] leading-[1.8]"
-                  style={{ color: "var(--sumi-soft)" }}
-                >
-                  <span
-                    className="font-mono pt-1 text-[10px]"
-                    style={{ color: "var(--shu)" }}
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span>{example}</span>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
+      {showExamples && grammarPoint.example_sentences?.length > 0 ? (
+        <div className="mt-5 border-t border-slate-200 pt-5">
+          <h3 className="text-sm font-semibold text-slate-700">Textbook examples</h3>
+          <ol className="mt-3 list-decimal space-y-3 pl-5 text-base leading-7 text-slate-800">
+            {grammarPoint.example_sentences.map((example) => (
+              <li key={example}>{example}</li>
+            ))}
+          </ol>
+        </div>
+      ) : null}
+    </section>
   );
 }

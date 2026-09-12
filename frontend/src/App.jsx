@@ -1,5 +1,4 @@
 import { useMemo, useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
 import grammarLessons from "./data/grammar_points_merged.json";
 import { parseSseEvents } from "./utils/parseSseEvents";
 import { GrammarPointCard } from "./components/GrammarPointCard";
@@ -27,11 +26,17 @@ function App() {
   const lessonOptions = useMemo(
     () =>
       grammarLessons.map((item, index) => ({
-        label: `${String(item.lesson).padStart(2, "0")}`,
+        label: `Lesson ${String(item.lesson).padStart(2, "0")}`,
         value: index,
       })),
     [],
   );
+
+  function resetEvaluation() {
+    setStatusMessage("");
+    setResult(null);
+    setError("");
+  }
 
   function changeLesson(nextIndex) {
     setLessonIndex(nextIndex);
@@ -43,12 +48,6 @@ function App() {
     const boundedIndex = (nextIndex + grammarPoints.length) % grammarPoints.length;
     setPointIndex(boundedIndex);
     resetEvaluation();
-  }
-
-  function resetEvaluation() {
-    setStatusMessage("");
-    setResult(null);
-    setError("");
   }
 
   function handleSentenceChange(value) {
@@ -105,71 +104,49 @@ function App() {
   }
 
   return (
-    <main className="relative min-h-screen overflow-x-hidden">
-      {/* Decorative background kanji */}
-      <span className="kanji-bg" style={{ top: "-4rem", right: "-2rem", fontSize: "28rem" }}>
-        文
-      </span>
-      <span className="kanji-bg" style={{ bottom: "-8rem", left: "-4rem", fontSize: "32rem" }}>
-        法
-      </span>
+    <main className="min-h-screen">
+      <header className="border-b border-slate-200 bg-white">
+        <div className="mx-auto max-w-6xl px-5 py-5 sm:px-8">
+          <h1 className="text-xl font-semibold text-slate-900">Bunpou Practice</h1>
+          <p className="mt-1 text-sm text-slate-600">Practice Japanese grammar with focused feedback.</p>
+        </div>
+      </header>
 
-      {/* Main grid */}
-      <section className="relative z-10 mx-auto grid w-full max-w-[1400px] gap-8 px-8 py-8 lg:grid-cols-[340px_minmax(0,1fr)]">
-        {/* LEFT — Lesson & Pattern */}
-        <aside className="flex flex-col gap-6">
-          {/* Lesson selector */}
-          <div className="paper relative rounded-sm p-6">
-            <div className="mb-4 flex items-baseline justify-between">
-              <span className="font-mono text-[10px] tracking-[0.3em] uppercase" style={{ color: "var(--ink-mute)" }}>
-                Lesson · 課
-              </span>
-              <span className="font-jp text-xs" style={{ color: "var(--ink-mute)" }}>
-                {grammarPoints.length} 項目
-              </span>
-            </div>
-            <div className="relative">
-              <select
-                className="w-full cursor-pointer appearance-none rounded-none border-0 border-b-2 bg-transparent pb-2 font-en text-3xl font-light tracking-tight outline-none transition focus:border-current"
-                style={{
-                  borderBottomColor: "rgba(21, 17, 12, 0.15)",
-                  color: "var(--sumi)",
-                }}
-                value={lessonIndex}
-                onChange={(event) => changeLesson(Number(event.target.value))}
-              >
-                {lessonOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    Lesson&nbsp;{option.label}
-                  </option>
-                ))}
-              </select>
-              <span
-                className="font-jp pointer-events-none absolute right-0 top-1 text-xs"
-                style={{ color: "var(--ink-mute)" }}
-              >
-                ▾
-              </span>
-            </div>
+      <div className="mx-auto grid max-w-6xl gap-6 px-5 py-6 sm:px-8 lg:grid-cols-[320px_minmax(0,1fr)] lg:py-8">
+        <aside className="flex flex-col gap-4">
+          <div className="rounded-xl border border-slate-200 bg-white p-5">
+            <label htmlFor="lesson-select" className="mb-2 block text-sm font-medium text-slate-700">
+              Lesson
+            </label>
+            <select
+              id="lesson-select"
+              className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-base"
+              value={lessonIndex}
+              onChange={(event) => changeLesson(Number(event.target.value))}
+            >
+              {lessonOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
           </div>
 
-          {grammarPoint && (
+          {grammarPoint ? (
             <GrammarPointCard
               grammarPoint={grammarPoint}
-              lessonIndex={lessonIndex}
               pointIndex={pointIndex}
               totalPoints={grammarPoints.length}
               showDetails={showDetails}
               showExamples={showExamples}
               onChangePoint={changePoint}
-              onToggleDetails={() => setShowDetails((v) => !v)}
-              onToggleExamples={() => setShowExamples((v) => !v)}
+              onToggleDetails={() => setShowDetails((value) => !value)}
+              onToggleExamples={() => setShowExamples((value) => !value)}
             />
-          )}
+          ) : null}
         </aside>
 
-        {/* RIGHT — Composition + Result */}
-        <section className="flex flex-col gap-8">
+        <section className="flex min-w-0 flex-col gap-6" aria-label="Writing practice">
           <CompositionPanel
             grammarPoint={grammarPoint}
             sentence={sentence}
@@ -180,34 +157,9 @@ function App() {
             onEvaluate={evaluateSentence}
           />
 
-          <AnimatePresence mode="wait">
-            {result && (
-              <motion.div
-                key={JSON.stringify(result).slice(0, 32)}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <ResultPanel result={result} />
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {result ? <ResultPanel result={result} /> : null}
         </section>
-      </section>
-
-      {/* Footer */}
-      <footer className="relative z-10 mx-auto w-full max-w-[1400px] px-8 pb-8">
-        <div className="deco-line h-px w-full" />
-        <div
-          className="font-mono mt-4 flex items-center justify-between text-[10px] tracking-[0.3em] uppercase"
-          style={{ color: "var(--ink-mute)" }}
-        >
-          <span>© Bunpou Atelier</span>
-          <span className="font-jp">一期一会</span>
-          <span>Crafted in 東京</span>
-        </div>
-      </footer>
+      </div>
     </main>
   );
 }
