@@ -11,7 +11,6 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8000
 function App() {
   const [lessonIndex, setLessonIndex] = useState(0);
   const [pointIndex, setPointIndex] = useState(0);
-  const [sentence, setSentence] = useState("");
   const [statusMessage, setStatusMessage] = useState("");
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");
@@ -50,12 +49,7 @@ function App() {
     resetEvaluation();
   }
 
-  function handleSentenceChange(value) {
-    setSentence(value);
-    resetEvaluation();
-  }
-
-  async function evaluateSentence() {
+  async function evaluateSentence(sentence) {
     const trimmedSentence = sentence.trim();
     if (!trimmedSentence || !grammarPoint || isEvaluating) return;
 
@@ -149,11 +143,9 @@ function App() {
         <section className="flex min-w-0 flex-col gap-6" aria-label="Writing practice">
           <CompositionPanel
             grammarPoint={grammarPoint}
-            sentence={sentence}
             statusMessage={statusMessage}
             error={error}
             isEvaluating={isEvaluating}
-            onSentenceChange={handleSentenceChange}
             onEvaluate={evaluateSentence}
           />
 

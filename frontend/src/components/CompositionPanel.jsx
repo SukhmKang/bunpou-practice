@@ -9,17 +9,23 @@ function Spinner() {
 
 export function CompositionPanel({
   grammarPoint,
-  sentence,
   statusMessage,
   error,
   isEvaluating,
-  onSentenceChange,
   onEvaluate,
 }) {
-  const charCount = sentence.length;
+  function handleSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    onEvaluate(String(formData.get("sentence") ?? ""));
+  }
 
   return (
-    <section className="rounded-xl border border-slate-200 bg-white p-5 sm:p-7" aria-labelledby="compose-heading">
+    <form
+      className="rounded-xl border border-slate-200 bg-white p-5 sm:p-7"
+      aria-labelledby="compose-heading"
+      onSubmit={handleSubmit}
+    >
       <p className="text-sm font-medium text-blue-700">Writing practice</p>
       <h2 id="compose-heading" className="mt-1 text-2xl font-semibold leading-snug text-slate-950">
         Write a sentence using {grammarPoint?.pattern ?? "this grammar point"}
@@ -30,28 +36,17 @@ export function CompositionPanel({
       </label>
       <textarea
         id="practice-sentence"
+        name="sentence"
+        required
         className="mt-2 h-40 w-full resize-y rounded-lg border border-slate-300 bg-white p-4 text-lg leading-8 text-slate-950 placeholder:text-slate-400"
         placeholder={`${grammarPoint?.pattern ?? "文型"} を使って書いてみてください…`}
-        value={sentence}
-        onChange={(event) => onSentenceChange(event.target.value)}
-        onKeyDown={(event) => {
-          if ((event.metaKey || event.ctrlKey) && event.key === "Enter") {
-            event.preventDefault();
-            onEvaluate();
-          }
-        }}
       />
 
-      <div className="mt-4 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
-        <div className="text-sm text-slate-500">
-          <span>{charCount} characters</span>
-          <span className="ml-3 hidden sm:inline">Press ⌘/Ctrl + Enter to evaluate</span>
-        </div>
+      <div className="mt-4 flex justify-end">
         <button
-          type="button"
+          type="submit"
           className="inline-flex min-w-32 items-center justify-center gap-2 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-300"
-          disabled={!sentence.trim() || isEvaluating}
-          onClick={onEvaluate}
+          disabled={isEvaluating}
         >
           {isEvaluating ? (
             <>
@@ -74,6 +69,6 @@ export function CompositionPanel({
           {statusMessage || "Reading your sentence…"}
         </div>
       ) : null}
-    </section>
+    </form>
   );
 }
