@@ -75,10 +75,10 @@ def _stream_evaluation_events(
 
 @app.post("/api/evaluate/stream")
 def evaluate_stream(request: EvaluationStreamRequest) -> StreamingResponse:
-    if "ANTHROPIC_API_KEY" not in os.environ:
+    if "OPENAI_API_KEY" not in os.environ:
         raise HTTPException(
             status_code=500,
-            detail="ANTHROPIC_API_KEY is not configured for the backend.",
+            detail="OPENAI_API_KEY is not configured for the backend.",
         )
 
     if "pattern" not in request.grammar_point:

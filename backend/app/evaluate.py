@@ -5,13 +5,13 @@ import os
 from pathlib import Path
 from typing import Optional
 
-import anthropic
 from dotenv import load_dotenv
+from openai import OpenAI
 from pydantic import BaseModel
 
 load_dotenv()
 
-DEFAULT_MODEL = os.getenv("ANTHROPIC_MODEL", "claude-sonnet-4-6")
+DEFAULT_MODEL = os.getenv("OPENAI_MODEL", "gpt-5.6-terra")
 
 
 class Evaluation(BaseModel):
@@ -58,16 +58,20 @@ Rules:
 
 
 def evaluate(sentence: str, grammar_point: dict) -> Evaluation:
-    client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
-    response = client.messages.parse(
+    client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
+    response = client.responses.parse(
         model=DEFAULT_MODEL,
-        max_tokens=1024,
-        system=SYSTEM_PROMPT,
-        messages=[{"role": "user", "content": build_prompt(sentence, grammar_point)}],
-        output_format=Evaluation,
-        temperature=0.2,
+        input=[
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": build_prompt(sentence, grammar_point)},
+        ],
+        text_format=Evaluation,
+        reasoning={"effort": "low"},
+        max_output_tokens=2048,
     )
-    return response.parsed_output
+    if response.output_parsed is None:
+        raise RuntimeError("The grading model did not return a structured evaluation.")
+    return response.output_parsed
 
 
 if __name__ == "__main__":
